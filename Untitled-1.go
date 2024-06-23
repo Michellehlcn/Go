@@ -9,9 +9,12 @@ import (
 	"os"
 )
 
+import "rsc.io/quote"
+
 func main() {
 	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "Hello, playground")
+		fmt.Println(quote.Go())
 	})
 
 	log.Println("Starting server...")
