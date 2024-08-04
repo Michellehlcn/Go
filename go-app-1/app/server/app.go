@@ -2,9 +2,16 @@ package main
 
 import (
 	"net/http"
+
+	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 )
 
-func main() {
+func NewApp() *echo.Echo {
+	engine := echo.New()
+	engine.Debug = true
+	engine.Use(middleware.Recover())
+
 	// static files
 	fs := http.FileServer(http.Dir("build"))
 	http.Handle("/", fs)
